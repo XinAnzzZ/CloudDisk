@@ -20,6 +20,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
+          <factory-entry name="cmcUnit" />
           <factory-entry name="persistenceUnit" value="1486a63c-9c45-4452-b4b4-d5b20ba12cb1" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
