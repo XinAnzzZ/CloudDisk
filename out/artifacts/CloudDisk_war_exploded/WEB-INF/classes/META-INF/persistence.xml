@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <!--ENABLE_SELECTIVE[(默认和推荐值):实体不缓存,除非明确标记为可缓存的。] DISABLE_SELECTIVE[实体缓存,除非明确标记为不缓存] NONE[无缓存] ALL[全部缓存]-->
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+        <properties>
+        </properties>
+    </persistence-unit>
+</persistence>
+
