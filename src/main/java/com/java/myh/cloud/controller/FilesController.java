@@ -77,7 +77,7 @@ public class FilesController extends BaseController {
         shareFilesService.saveShareFiles(shareFiles);
         Result result = new Result();
         result.setData(sign);
-        result.setMsg(password);
+        result.setMessage(password);
         return result;
     }
 

@@ -8,7 +8,7 @@ package com.java.myh.cloud.common.utils;
 public class Result {
 
     private boolean success;
-    private String msg;
+    private String message;
     private Object data;
 
 
@@ -17,20 +17,20 @@ public class Result {
 
     public Result(boolean success, String msg) {
         this.success = success;
-        this.msg = msg;
+        this.message = msg;
     }
 
     public static Result ok() {
         Result result = new Result();
         result.setSuccess(true);
-        result.setMsg("成功");
+        result.setMessage("成功");
         return result;
     }
 
     public static Result ok(String msg) {
         Result result = new Result();
         result.setSuccess(true);
-        result.setMsg(msg);
+        result.setMessage(msg);
         return result;
     }
 
@@ -44,14 +44,14 @@ public class Result {
     public static Result fail() {
         Result result = new Result();
         result.setSuccess(false);
-        result.setMsg("失败");
+        result.setMessage("失败");
         return result;
     }
 
     public static Result fail(String msg) {
         Result result = new Result();
         result.setSuccess(false);
-        result.setMsg(msg);
+        result.setMessage(msg);
         return result;
     }
 
@@ -69,12 +69,12 @@ public class Result {
         return this;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public Result setMsg(String msg) {
-        this.msg = msg;
+    public Result setMessage(String msg) {
+        this.message = msg;
         return this;
     }
 
