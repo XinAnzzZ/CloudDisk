@@ -68,7 +68,7 @@
                     url: '/login',
                     success: function (data) {
                         if (data.data === '/user/home') {
-                            app.$message({type: 'success', msg: '登录成功！'});
+                            app.$message({type: 'success', message: '登录成功！'});
                             setTimeout(function () {
                                 cancel();
                             }, 1000);

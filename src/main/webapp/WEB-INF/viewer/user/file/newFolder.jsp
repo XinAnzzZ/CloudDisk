@@ -60,7 +60,7 @@
                         data: formData,
                         url: '/user/new/folder',
                         success: function () {
-                            parent.msg();
+                            parent.message();
                             parent.layer.close(index);
                         }
                     });

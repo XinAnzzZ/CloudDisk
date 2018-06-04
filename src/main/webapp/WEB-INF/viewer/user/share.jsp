@@ -74,7 +74,7 @@
                     data: shareFormData,
                     success: function (data) {
                         let sign = data.data;
-                        let password = data.msg;
+                        let password = data.message;
                         $("#sharePage").remove();
                         changePageContent(sign, password);
                     }
@@ -135,7 +135,7 @@
         signInput.val(copyContent);
         signInput.select();
         document.execCommand("copy");
-        layer.msg("复制链接成功", {icon: 1});
+        layer.message("复制链接成功", {icon: 1});
     }
 
     //取消

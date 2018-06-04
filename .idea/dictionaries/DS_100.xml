@@ -6,6 +6,7 @@
       <w>addr</w>
       <w>adving</w>
       <w>alibaba</w>
+      <w>aliyun</w>
       <w>authc</w>
       <w>autodetection</w>
       <w>bahnlj</w>
@@ -16,6 +17,7 @@
       <w>datatables</w>
       <w>docx</w>
       <w>formatsql</w>
+      <w>jpamodelgen</w>
       <w>jstl</w>
       <w>layim</w>
       <w>layimext</w>
@@ -25,6 +27,7 @@
       <w>maxmin</w>
       <w>miui</w>
       <w>pptx</w>
+      <w>querydsl</w>
       <w>randomcodekey</w>
       <w>seekable</w>
       <w>showsql</w>

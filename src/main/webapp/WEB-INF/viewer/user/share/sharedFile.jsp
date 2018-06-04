@@ -176,7 +176,7 @@
                                 confirmButtonText: '确定'
                             });
                         } else {
-                            app.$alert(data.msg, '提示', {
+                            app.$alert(data.message, '提示', {
                                 confirmButtonText: '确定'
                             });
                         }

@@ -61,10 +61,10 @@
                         url: '/files/rename',
                         success: function (data) {
                             // app.$message({
-                            //     message: data.msg,
+                            //     message: data.message,
                             //     type: 'success'
                             // });
-                            parent.renameMsg(data.msg);
+                            parent.renameMsg(data.message);
                             parent.layer.close(index);
                         }
                     });

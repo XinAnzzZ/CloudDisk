@@ -141,7 +141,7 @@
                         setTimeout(function () {
                             if (flag) {
                                 //这一步没什么用，就是为了消除msg方法没有被使用的警告。强迫症就这么倔强。
-                                msg();
+                                message();
                                 renameMsg();
                             }
                             dataTable.ajax.reload();
@@ -283,12 +283,12 @@
     });
 
     //重命名成功后子窗口会回调这个函数
-    function renameMsg(msg) {
-        app.$message({message: msg, type: "success"});
+    function renameMsg(message) {
+        app.$message({message: message, type: "success"});
     }
 
     //新建文件夹成功后子窗口会回调这个函数
-    function msg() {
+    function message() {
         app.$message({message: "新建文件夹成功！", type: "success"});
     }
 

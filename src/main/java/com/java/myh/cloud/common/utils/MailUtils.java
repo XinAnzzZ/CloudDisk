@@ -10,50 +10,58 @@ import java.util.Properties;
  * @date 2018/5/11 17:57
  */
 public class MailUtils {
-    public static Properties properties;
-    public static Message message;
-    public static Transport transport;
-
-    private static void init() {
-        properties = new Properties();
-        //调试模式发送
-        properties.setProperty("mail.debug", "true");
-        //身份验证设置
-        properties.setProperty("mail.smtp.auth", "true");
-        //发件人邮箱主机名
-        properties.setProperty("mail.host", "smtp.163.com");
-        //发件协议
-        properties.setProperty("mail.transport.protocol", "smtp");
-        Session session = Session.getInstance(properties);
-        message = new MimeMessage(session);
-        try {
-            message.setSubject("快云网盘邮箱验证邮件");
-            //设置发件人
-            message.setFrom(new InternetAddress("13023195022@163.com"));
-            transport = session.getTransport();
-            //设置发件人在该邮箱主机上的用户名密码
-            transport.connect("13023195022@163.com", "xinan9508060");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
+    private static final String ALIYUN_SMTP_HOST = "smtp.aliyun.com";
 
     /**
-     * 发送随机验证码邮件
+     * send mail
      *
-     * @param emailAddress 邮箱地址
-     * @param code         随机验证码
+     * @throws MessagingException E
      */
-    public static void sendEmail(String emailAddress, String code) {
-        init();
-        String emailContent = "感谢您使用快云网盘，您的验证码是" + code
-                + "，请勿将该验证码告知别人！";
-        try {
-            message.setText(emailContent);
-            transport.sendMessage(message, new Address[]{new InternetAddress(emailAddress)});
-            transport.close();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+    public static void sendEmail(String sendTo, String mailContent) throws MessagingException {
+        // 配置发送邮件的环境属性
+        final Properties props = new Properties();
+        // 表示SMTP发送邮件，需要进行身份验证
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.host", ALIYUN_SMTP_HOST);
+        // 如果使用ssl，则去掉使用25端口的配置，进行如下配置,
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.port", "465");
+
+        // 发件人的账号
+        props.put("mail.user", "xinan950806@aliyun.com");
+        // 访问SMTP服务时需要提供的密码(邮箱密码)
+        props.put("mail.password", "xinan950806");
+
+        // 构建授权信息，用于SMTP进行身份验证
+        Authenticator authenticator = new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                // 用户名、密码
+                String userName = props.getProperty("mail.user");
+                String password = props.getProperty("mail.password");
+                return new PasswordAuthentication(userName, password);
+            }
+        };
+        // 使用环境属性和授权信息，创建邮件会话
+        Session mailSession = Session.getInstance(props, authenticator);
+        // 创建邮件消息
+        MimeMessage message = new MimeMessage(mailSession);
+        // 设置发件人
+        InternetAddress form = new InternetAddress(props.getProperty("mail.user"));
+        message.setFrom(form);
+
+        // 设置收件人
+        InternetAddress to = new InternetAddress(sendTo);
+        message.setRecipient(MimeMessage.RecipientType.TO, to);
+
+        // 设置邮件标题
+        message.setSubject("快云网盘邮箱验证");
+        // 设置邮件的内容体
+        message.setContent("感谢您使用快云网盘，您的验证码是" + mailContent
+                + "，请勿将该验证码告知别人！", "text/html;charset=UTF-8");
+
+        // 发送
+        Transport.send(message);
     }
 }

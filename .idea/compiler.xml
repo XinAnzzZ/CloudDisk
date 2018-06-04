@@ -9,6 +9,14 @@
         <processor name="com.querydsl.apt.jpa.JPAAnnotationProcessor" />
         <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" />
       </profile>
+      <profile name="Annotation profile for CloudDisk" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processor name="com.querydsl.apt.jpa.JPAAnnotationProcessor" />
+        <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" />
+        <module name="CloudDisk" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CloudDisk" target="1.8" />

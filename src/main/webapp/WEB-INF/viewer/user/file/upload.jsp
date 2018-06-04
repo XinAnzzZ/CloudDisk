@@ -51,12 +51,12 @@
             handleSuccess(data) {
                 if (data.success) {
                     this.$message({
-                        message: data.msg,
+                        message: data.message,
                         type: 'success'
                     });
                 } else {
                     this.$message({
-                        message: data.msg,
+                        message: data.message,
                         type: 'error'
                     });
                 }

@@ -6,7 +6,7 @@
     <name>CloudDisk</name>
     <groupId>com.java.myh.cloud</groupId>
     <artifactId>CloudDisk</artifactId>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
     <version>1.8.8</version>
 
     <developers>
@@ -544,7 +544,6 @@
                     </executions>
                 </plugin>
             </plugins>
-
         </pluginManagement>
         <plugins>
             <plugin>

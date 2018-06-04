@@ -25,7 +25,7 @@
             type: 'post',
             success: function (data) {
                 if (data.success) {
-                    let location = data.msg;
+                    let location = data.message;
                     let one = location.substring(0, 1);
                     let two = location.substring(2, 3);
                     let fileName = location.substring(4, location.length);

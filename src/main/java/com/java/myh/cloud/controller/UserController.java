@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -93,6 +94,7 @@ public class UserController extends BaseController {
 
     /**
      * 首页
+     * inspection
      */
     @RequestMapping("/home")
     public String home() {
@@ -410,7 +412,7 @@ public class UserController extends BaseController {
      */
     @ResponseBody
     @PostMapping("/send/email")
-    public Result sendEmail(HttpSession session, String email) {
+    public Result sendEmail(HttpSession session, String email) throws MessagingException {
         if (!getUser().getEmail().equals(email)) {
             return Result.fail();
         }
@@ -418,7 +420,6 @@ public class UserController extends BaseController {
         session.setAttribute("randomCode", randomCode);
         MailUtils.sendEmail(email, randomCode);
         return Result.ok();
-
     }
 
     /**

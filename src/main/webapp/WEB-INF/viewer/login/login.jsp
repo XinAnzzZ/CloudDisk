@@ -202,7 +202,7 @@
                         }
                         vueThis.$message({
                             showClose: true,
-                            message: response.data.msg,
+                            message: response.data.message,
                             type: messageType
                         });
                         vueThis.yzmUrl = ("/common/pub/getRandCode?") + Math.random();
