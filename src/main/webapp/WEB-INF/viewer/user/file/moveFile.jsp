@@ -14,85 +14,40 @@
 <body>
 <div id="tree">
     移动到：
-    <el-cascader :options="options2" @active-item-change="handleItemChange" :props="props"></el-cascader>
+    <el-tree :load="loadNode()"
+             :props="props1"
+             :highlight-current="true"
+             :check-on-click-node="true" lazy></el-tree>
 </div>
 <script type="application/javascript">
     new Vue({
         el: "#tree",
         data: {
-            options2: [{
-                label: '江苏',
-                cities: []
-            }, {
-                label: '浙江',
-                cities: []
-            }],
-            props: {
-                props: {
-                    value: 'label',
-                    children: 'cities'
-                }
-            }
+            props1: [{
+                label: '/',
+                fileId: 0
+            }]
         },
         methods: {
-            handleItemChange(val) {
-                console.log('active item:', val);
-                setTimeout(_ => {
-                    if (val.indexOf('江苏') > -1 && !this.options2[0].cities.length) {
-                        this.options2[0].cities = [{
-                            label: '南京'
-                        }];
-                    } else if (val.indexOf('浙江') > -1 && !this.options2[1].cities.length) {
-                        this.options2[1].cities = [{
-                            label: '杭州'
-                        }];
-                    }
-                }, 300);
+            loadNode(node, resolve) {
+                let flag = true;
+                if (flag) {
+                    flag = false;
+                    return resolve([{"name": '/'}]);
+                }
+                console.log(node);
+                setTimeout(() => {
+                    const data = [{
+                        name: 'leaf',
+                        leaf: true
+                    }, {
+                        name: 'zone'
+                    }];
+                    resolve(data);
+                }, 500);
             }
         }
     });
-    <%--var zNodes = [{id: 0, name: '...', isParent: true}];--%>
-    <%--var fileId = ${fileIdArray};--%>
-    <%--var zTree;--%>
-    <%--var setting = {--%>
-    <%--data: {--%>
-    <%--simpleData: {--%>
-    <%--enable: true,--%>
-    <%--idKey: "id",--%>
-    <%--pIdKey: "fatherId",--%>
-    <%--rootPId: 0--%>
-    <%--}--%>
-    <%--},--%>
-    <%--view: {--%>
-    <%--dblClickExpand: true,--%>
-    <%--selectedMulti: false--%>
-    <%--},--%>
-    <%--callback: {--%>
-    <%--onExpand: getNodes(),--%>
-    <%--}--%>
-    <%--}--%>
-    <%--$(function () {--%>
-    <%--zTree = $.fn.zTree.init($("#ztree"), setting, zNodes);--%>
-    <%--// $.ajax({--%>
-    <%--//     type: 'post',--%>
-    <%--//     url: '/files/get/tree/nodes',--%>
-    <%--//     success: function (data) {--%>
-    <%--//         for (var i = 0; i < data.length; i++) {--%>
-    <%--//--%>
-    <%--//         }--%>
-    <%--//     }--%>
-    <%--// });--%>
-
-    <%--});--%>
-
-    <%--function getNodes() {--%>
-    <%--// debugger--%>
-    <%--// var node = zTree.getNodeByTId(0);--%>
-    <%--// console.info("...");--%>
-    <%--// $.post('/files/get/tree/nodes', {fatherId: node.id}, function (data) {--%>
-    <%--//    console.info(data);--%>
-    <%--// });--%>
-    <%--}--%>
 </script>
 </body>
 </html>
