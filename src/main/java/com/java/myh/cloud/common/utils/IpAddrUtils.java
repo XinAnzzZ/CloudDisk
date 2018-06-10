@@ -1,12 +1,10 @@
 package com.java.myh.cloud.common.utils;
 
-import com.alibaba.fastjson.JSONObject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * @author 心安 QWQ
@@ -153,24 +151,17 @@ public class IpAddrUtils {
         }
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip=" + ip)
+                .url("http://apis.juhe.cn/ip/ip2addr?dtype=&key=ba45af0845c3cc763b2326e5b5a4ad06&ip=" + ip)
                 .build();
         Response response;
         String responseBody;
         try {
             response = okHttpClient.newCall(request).execute();
             responseBody = response.body().string();
-            System.out.println(responseBody);
             String result = responseBody.substring(responseBody.indexOf("{"), responseBody.length() - 1);
-            Map map = JSONObject.parseObject(result, Map.class);
-            Integer ret = (Integer) map.get("ret");
-            String country = (String) map.get("country");
-            String province = (String) map.get("province");
-            String city = (String) map.get("city");
-            if (ret == -1) {
-                return "内网ip";
-            }
-            return country + " " + province + " " + city;
+            String area = result.substring(result.indexOf("\"area\":\"") + 8, result.indexOf("\",\"location\""));
+            String location = result.substring(result.indexOf("\"location\":\"") + 12, result.indexOf("\"},\"error_code\""));
+            return area + " " + location;
         } catch (IOException e) {
             e.printStackTrace();
         }
