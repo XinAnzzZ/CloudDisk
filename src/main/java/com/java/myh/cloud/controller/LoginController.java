@@ -35,6 +35,12 @@ public class LoginController extends BaseController {
     @Resource
     private UserService userService;
 
+    @GetMapping("/test")
+    public String test() {
+
+        return "/login/test";
+    }
+
     /**
      * 首页
      */
